@@ -1,73 +1,93 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Spivak Spendbase Test
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Table of Contents
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Running Tests](#running-tests)
 
-## Description
+## Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Fetch current, minutely, hourly, daily weather data and alerts from OpenWeatherMap API
+- Store and retrieve weather data from a PostgreSQL database
+- API documentation with Swagger
+- Input validation with class-validator
+- Response transformation using interceptors
+
+## Prerequisites
+
+- Node.js (version 20.x or later)
+- npm (version 6.x or later)
+- PostgreSQL (version 12 or later)
+- Docker (optional, for containerization)
 
 ## Installation
 
-```bash
-$ npm install
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/dmytro-spi/spendbase_test.git
+   cd spendbase_test
+   ```
 
-## Running the app
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-```bash
-# development
-$ npm run start
+3. **Create a `.env` file in the root directory with the following content:**
+   ```env
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_USERNAME=your_db_username
+   DB_PASSWORD=your_db_password
+   DB_DATABASE=your_db_name
+   OPENWEATHER_API_KEY=your_openweather_api_key
+   ```
 
-# watch mode
-$ npm run start:dev
+4. **Set up the database:**
+   ```bash
+   npm run typeorm migration:run
+   ```
 
-# production mode
-$ npm run start:prod
-```
+## Usage
 
-## Test
+1. **Start the application:**
+   ```bash
+   npm run build
+   npm run start
+   ```
+   or (in development mode)
+   ```bash
+    npm run start:dev
+    ```
+   or (with Docker-Compose)
+   ```bash
+    docker-compose build
+    docker-compose up
+    ```
+   or (with Docker)
+   ```bash
+    docker build -t spendbase_test .
+    docker run -p 3000:3000 spendbase_test
+    ```
 
-```bash
-# unit tests
-$ npm run test
+2. **The API will be available at `http://localhost:3000`**
 
-# e2e tests
-$ npm run test:e2e
+## API Documentation
 
-# test coverage
-$ npm run test:cov
-```
+Swagger documentation is available at `http://localhost:3000/api`.
 
-## Support
+## Running Tests
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+1. **Run unit tests:**
+   ```bash
+   npm run test
+   ```
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+2**Run test coverage:**
+   ```bash
+   npm run test:cov
+   ```
