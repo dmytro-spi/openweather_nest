@@ -1,4 +1,4 @@
-# Spivak Spendbase Test
+# OpenWeatherMap Nest
 
 ## Table of Contents
 
